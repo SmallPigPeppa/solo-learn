@@ -450,6 +450,9 @@ class CustomTransform:
         mean: Sequence[float] = (0.485, 0.456, 0.406),
         std: Sequence[float] = (0.228, 0.224, 0.225),
     ):
+        # cifar 100
+        # mean = (0.5071, 0.4865, 0.4409)
+        # std = (0.2673, 0.2564, 0.2762)
         """Applies Custom transformations.
         If you want to do exoteric augmentations, you can just re-write this class.
 
@@ -844,6 +847,8 @@ class PretrainDALIDataModule(pl.LightningDataModule):
         # handle custom data by creating the needed pipeline
         if dataset in ["imagenet100", "imagenet"]:
             transform_pipeline = ImagenetTransform
+        elif dataset in ['imagenet32']:
+            transform_pipeline = CustomTransform
         elif dataset == "custom":
             transform_pipeline = CustomTransform
         else:

@@ -198,7 +198,7 @@ def additional_setup_pretrain(args: Namespace):
                 kwargs["std"] = args.std
 
     # create backbone-specific arguments
-    args.backbone_args = {"cifar": args.dataset in ["cifar10", "cifar100"]}
+    args.backbone_args = {"cifar": args.dataset in ["cifar10", "cifar100","imagenet32"]}
     if "resnet" in args.backbone and "wide" not in args.backbone:
         args.backbone_args["zero_init_residual"] = args.zero_init_residual
     elif "convnext" not in args.backbone:

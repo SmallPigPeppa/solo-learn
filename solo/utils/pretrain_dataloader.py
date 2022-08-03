@@ -202,6 +202,7 @@ class CifarTransform(BaseTransform):
         max_scale: float = 1.0,
         crop_size: int = 32,
     ):
+
         """Class that applies Cifar10/Cifar100 transformations.
 
         Args:
@@ -466,7 +467,7 @@ def prepare_transform(dataset: str, **kwargs) -> Any:
         Any: a transformation for a specific dataset.
     """
 
-    if dataset in ["cifar10", "cifar100"]:
+    if dataset in ["cifar10", "cifar100","imagenet32"]:
         return CifarTransform(cifar=dataset, **kwargs)
     elif dataset == "stl10":
         return STLTransform(**kwargs)
@@ -550,7 +551,8 @@ def prepare_datasets(
             train_dataset = dataset_with_index(H5Dataset)(dataset, train_data_path, transform)
         else:
             train_dataset = dataset_with_index(ImageFolder)(train_data_path, transform)
-
+    elif dataset == "imagenet32":
+        train_dataset = dataset_with_index(ImageFolder)(train_data_path, transform)
     elif dataset == "custom":
         if no_labels:
             dataset_class = CustomDatasetWithoutLabels
