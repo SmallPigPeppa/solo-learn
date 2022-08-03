@@ -135,6 +135,7 @@ def prepare_transforms(dataset: str) -> Tuple[nn.Module, nn.Module]:
         "imagenet100": imagenet_pipeline,
         "imagenet": imagenet_pipeline,
         "custom": custom_pipeline,
+        "imagenet32": cifar_pipeline,
     }
 
     assert dataset in pipelines
