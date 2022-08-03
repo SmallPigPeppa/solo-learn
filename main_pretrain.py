@@ -71,7 +71,7 @@ def main():
     # validation dataloader for when it is available
     if args.dataset == "custom" and (args.no_labels or args.val_data_path is None):
         val_loader = None
-    elif args.dataset in ["imagenet100", "imagenet"] and (args.val_data_path is None):
+    elif args.dataset in ["imagenet100", "imagenet","imagenet32"] and (args.val_data_path is None):
         val_loader = None
     else:
         if args.data_format == "dali":
