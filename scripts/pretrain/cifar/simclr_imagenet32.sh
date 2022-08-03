@@ -1,11 +1,11 @@
 conda activate solo-learn
 cd /share/wenzhuoliu/code/solo-learn
 DATASET=imagenet32
+#    --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
 python3 main_pretrain.py \
     --dataset ${DATASET} \
     --backbone resnet18 \
     --train_data_path /share/wenzhuoliu/torch_ds/imagenet/train  \
-    --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
     --max_epochs 1000 \
     --devices 7, \
     --data_format dali \
