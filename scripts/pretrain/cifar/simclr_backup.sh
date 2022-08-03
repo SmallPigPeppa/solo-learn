@@ -1,8 +1,7 @@
 conda activate solo-learn
 cd /share/wenzhuoliu/code/solo-learn
-DATASET=cifar100
 python3 main_pretrain.py \
-    --dataset ${DATASET} \
+    --dataset $1 \
     --backbone resnet18 \
     --train_data_path ./datasets \
     --val_data_path ./datasets \
@@ -28,7 +27,7 @@ python3 main_pretrain.py \
     --gaussian_prob 0.0 0.0 \
     --crop_size 32 \
     --num_crops_per_aug 1 1 \
-    --name simclr-${DATASET} \
+    --name simclr-$1 \
     --project solo-learn \
     --entity pigpeppa \
     --wandb \
