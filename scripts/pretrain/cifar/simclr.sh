@@ -4,8 +4,8 @@ DATASET=cifar100
 python3 main_pretrain.py \
     --dataset ${DATASET} \
     --backbone resnet18 \
-    --train_data_path ./datasets \
-    --val_data_path ./datasets \
+    --train_data_path /home/admin/torch_ds  \
+    --val_data_path /home/admin/torch_ds  \
     --max_epochs 1000 \
     --devices 0 \
     --accelerator gpu \
