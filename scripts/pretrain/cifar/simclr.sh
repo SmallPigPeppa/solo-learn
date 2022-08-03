@@ -7,7 +7,7 @@ python3 main_pretrain.py \
     --train_data_path /home/admin/torch_ds  \
     --val_data_path /home/admin/torch_ds  \
     --max_epochs 1000 \
-    --devices 0 \
+    --devices 7 \
     --accelerator gpu \
     --precision 16 \
     --optimizer lars \
