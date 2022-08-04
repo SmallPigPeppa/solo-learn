@@ -10,6 +10,8 @@ python3 main_pretrain.py \
     --devices 4,5,6,7 \
     --data_format dali \
     --accelerator gpu \
+    --strategy ddp \
+    --sync_batchnorm \
     --precision 16 \
     --optimizer lars \
     --grad_clip_lars \
