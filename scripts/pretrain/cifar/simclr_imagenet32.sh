@@ -6,8 +6,9 @@ python3 main_pretrain.py \
     --dataset ${DATASET} \
     --backbone resnet18 \
     --train_data_path /share/wenzhuoliu/torch_ds/imagenet/train  \
+    --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
     --max_epochs 1000 \
-    --devices 7, \
+    --devices 4,5,6,7\
     --data_format dali \
     --accelerator gpu \
     --precision 16 \
@@ -16,10 +17,10 @@ python3 main_pretrain.py \
     --eta_lars 0.02 \
     --exclude_bias_n_norm \
     --scheduler warmup_cosine \
-    --lr 0.4 \
+    --lr 0.075*32 \
     --classifier_lr 0.1 \
     --weight_decay 1e-5 \
-    --batch_size 256 \
+    --batch_size 256*4 \
     --num_workers 4 \
     --crop_size 32 \
     --brightness 0.8 \
