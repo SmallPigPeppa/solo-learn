@@ -218,6 +218,8 @@ def main():
         pass
 
     if args.eval_on_cifar:
+        import torch.nn as nn
+        model.classifier=nn.Linear(model.features_dim, 100)
         cifar_train_loader, cifar_val_loader = prepare_data_classification(
             'cifar100',
             train_data_path=f'{args.cifar_path}',
