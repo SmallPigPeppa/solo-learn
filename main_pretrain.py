@@ -236,5 +236,6 @@ def main():
         trainer.fit(model, train_loader, val_loader, ckpt_path=ckpt_path)
 
 
+
 if __name__ == "__main__":
     main()
