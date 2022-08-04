@@ -22,3 +22,4 @@ python3 main_linear.py \
     --wandb \
     --save_checkpoint \
     --auto_resume
+
