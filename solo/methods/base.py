@@ -273,6 +273,7 @@ class BaseMethod(pl.LightningModule):
         if not no_channel_last:
             self = self.to(memory_format=torch.channels_last)
 
+
     @staticmethod
     def add_model_specific_args(parent_parser: ArgumentParser) -> ArgumentParser:
         """Adds shared basic arguments that are shared for all methods.
