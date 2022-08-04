@@ -589,9 +589,9 @@ class BaseMethod(pl.LightningModule):
             X_cifar, targets_cifar = batch["cifar_train_dataloader"]
             outs_online_eval_cifar = self._base_shared_step(X_cifar, targets_cifar)
             # outs_online_eval_cifar = {k: [out[k] for out in outs_online_eval_cifar] for k in outs_online_eval_cifar[0].keys()}
-            outs["loss"] = sum(outs_online_eval_cifar["loss"]) / self.num_large_crops
-            outs["acc1"] = sum(outs_online_eval_cifar["acc1"]) / self.num_large_crops
-            outs["acc5"] = sum(outs_online_eval_cifar["acc5"]) / self.num_large_crops
+            outs["loss"] = outs_online_eval_cifar["loss"]
+            outs["acc1"] = outs_online_eval_cifar["acc1"]
+            outs["acc5"] = outs_online_eval_cifar["acc5"]
             metrics = {
                 "train_class_loss": outs["loss"],
                 "train_acc1_cifar": outs["acc1"],
