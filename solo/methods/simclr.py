@@ -116,8 +116,10 @@ class SimCLR(BaseMethod):
         Returns:
             torch.Tensor: total loss composed of SimCLR loss and classification loss.
         """
-
-        indexes = batch[0]
+        if self.eval_on_cifar:
+            indexes = batch['train_dataloader'][0]
+        else:
+            indexes = batch[0]
 
         out = super().training_step(batch, batch_idx)
         class_loss = out["loss"]
