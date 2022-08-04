@@ -8,7 +8,7 @@ python3 main_pretrain.py \
     --backbone resnet50 \
     --train_data_path /share/wenzhuoliu/torch_ds/imagenet/train  \
     --max_epochs 1000 \
-    --devices 4,5,6,7\
+    --devices 4,5,6,7 \
     --data_format dali \
     --accelerator gpu \
     --precision 16 \
