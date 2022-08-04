@@ -549,7 +549,7 @@ class BaseMethod(pl.LightningModule):
         Returns:
             Dict[str, Any]: dict with the classification loss, features and logits.
         """
-        if self.online_eval_cifar:
+        if self.eval_on_cifar:
             _, X, targets = batch['train_dataloader']
         else:
             _, X, targets = batch
