@@ -2,6 +2,7 @@ conda activate solo-learn
 cd /share/wenzhuoliu/code/solo-learn
 DATASET=imagenet32
 #    --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
+# 0.075* sqrt(batch_size)
 python3 main_pretrain.py \
     --dataset ${DATASET} \
     --backbone resnet50 \
@@ -17,10 +18,10 @@ python3 main_pretrain.py \
     --eta_lars 0.02 \
     --exclude_bias_n_norm \
     --scheduler warmup_cosine \
-    --lr 0.075*32 \
+    --lr 2.4 \
     --classifier_lr 0.1 \
     --weight_decay 1e-5 \
-    --batch_size 256*4 \
+    --batch_size 1024 \
     --num_workers 4 \
     --crop_size 32 \
     --brightness 0.8 \
