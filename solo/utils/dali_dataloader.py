@@ -948,6 +948,55 @@ class PretrainDALIDataModule(pl.LightningDataModule):
 
         return train_loader
 
+    def train_dataloader_backup(self):
+        train_pipeline_builder = PretrainPipelineBuilder(
+            self.train_data_path,
+            batch_size=self.batch_size,
+            transforms=self.transforms,
+            num_crops_per_aug=self.num_crops_per_aug,
+            device=self.dali_device,
+            device_id=self.device_id,
+            shard_id=self.shard_id,
+            num_shards=self.num_shards,
+            num_threads=self.num_workers,
+            no_labels=self.no_labels,
+            encode_indexes_into_labels=self.encode_indexes_into_labels,
+            data_fraction=self.data_fraction,
+        )
+        train_pipeline = train_pipeline_builder.pipeline(
+            batch_size=train_pipeline_builder.batch_size,
+            num_threads=train_pipeline_builder.num_threads,
+            device_id=train_pipeline_builder.device_id,
+            seed=train_pipeline_builder.seed,
+        )
+        train_pipeline.build()
+
+        output_map = (
+            [f"large{i}" for i in range(self.num_large_crops)]
+            + [f"small{i}" for i in range(self.num_small_crops)]
+            + ["label"]
+        )
+
+        policy = LastBatchPolicy.DROP
+        conversion_map = (
+            train_pipeline_builder.conversion_map if self.encode_indexes_into_labels else None
+        )
+        train_loader = PretrainWrapper(
+            model_batch_size=self.batch_size,
+            model_rank=self.device_id,
+            model_device=self.device,
+            conversion_map=conversion_map,
+            pipelines=train_pipeline,
+            output_map=output_map,
+            reader_name="Reader",
+            last_batch_policy=policy,
+            auto_reset=True,
+        )
+
+        self.dali_epoch_size = train_pipeline.epoch_size("Reader")
+
+        return train_loader
+
 
 class ClassificationDALIDataModule(pl.LightningDataModule):
     def __init__(

@@ -49,6 +49,9 @@ def dataset_args(parser: ArgumentParser):
         choices=["image_folder", "dali", "h5"],
     )
 
+    parser.add_argument("--eval_on_cifar", action="store_true")
+    parser.add_argument("--cifar_path", type=Path, default=None)
+
     # percentage of data used from training, leave -1.0 to use all data available
     parser.add_argument("--data_fraction", default=-1.0, type=float)
 

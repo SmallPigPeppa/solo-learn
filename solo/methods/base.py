@@ -59,7 +59,7 @@ from torch.optim.lr_scheduler import MultiStepLR
 
 
 def static_lr(
-    get_lr: Callable, param_group_indexes: Sequence[int], lrs_to_replace: Sequence[float]
+        get_lr: Callable, param_group_indexes: Sequence[int], lrs_to_replace: Sequence[float]
 ):
     lrs = get_lr()
     for idx, lr in zip(param_group_indexes, lrs_to_replace):
@@ -106,30 +106,30 @@ class BaseMethod(pl.LightningModule):
     ]
 
     def __init__(
-        self,
-        backbone: str,
-        num_classes: int,
-        backbone_args: dict,
-        max_epochs: int,
-        batch_size: int,
-        optimizer: str,
-        lr: float,
-        weight_decay: float,
-        classifier_lr: float,
-        accumulate_grad_batches: Union[int, None],
-        extra_optimizer_args: Dict,
-        scheduler: str,
-        num_large_crops: int,
-        num_small_crops: int,
-        min_lr: float = 0.0,
-        warmup_start_lr: float = 0.00003,
-        warmup_epochs: float = 10,
-        scheduler_interval: str = "step",
-        lr_decay_steps: Sequence = None,
-        knn_eval: bool = False,
-        knn_k: int = 20,
-        no_channel_last: bool = False,
-        **kwargs,
+            self,
+            backbone: str,
+            num_classes: int,
+            backbone_args: dict,
+            max_epochs: int,
+            batch_size: int,
+            optimizer: str,
+            lr: float,
+            weight_decay: float,
+            classifier_lr: float,
+            accumulate_grad_batches: Union[int, None],
+            extra_optimizer_args: Dict,
+            scheduler: str,
+            num_large_crops: int,
+            num_small_crops: int,
+            min_lr: float = 0.0,
+            warmup_start_lr: float = 0.00003,
+            warmup_epochs: float = 10,
+            scheduler_interval: str = "step",
+            lr_decay_steps: Sequence = None,
+            knn_eval: bool = False,
+            knn_k: int = 20,
+            no_channel_last: bool = False,
+            **kwargs,
     ):
         """Base model that implements all basic operations for all self-supervised methods.
         It adds shared arguments, extract basic learnable parameters, creates optimizers
@@ -370,7 +370,7 @@ class BaseMethod(pl.LightningModule):
             num_devices = self.trainer.num_devices
             num_nodes = self.trainer.num_nodes
             effective_batch_size = (
-                self.batch_size * self.trainer.accumulate_grad_batches * num_devices * num_nodes
+                    self.batch_size * self.trainer.accumulate_grad_batches * num_devices * num_nodes
             )
             self._num_training_steps = dataset_size // effective_batch_size
 
@@ -548,8 +548,11 @@ class BaseMethod(pl.LightningModule):
         Returns:
             Dict[str, Any]: dict with the classification loss, features and logits.
         """
+        if self.online_eval_cifar:
+            _, X, targets = batch['train_dataloader']
+        else:
+            _, X, targets = batch
 
-        _, X, targets = batch
 
         X = [X] if isinstance(X, torch.Tensor) else X
 
@@ -559,8 +562,10 @@ class BaseMethod(pl.LightningModule):
         outs = [self._base_shared_step(x, targets) for x in X[: self.num_large_crops]]
         outs = {k: [out[k] for out in outs] for k in outs[0].keys()}
 
+
+
         if self.multicrop:
-            multicrop_outs = [self.multicrop_forward(x) for x in X[self.num_large_crops :]]
+            multicrop_outs = [self.multicrop_forward(x) for x in X[self.num_large_crops:]]
             for k in multicrop_outs[0].keys():
                 outs[k] = outs.get(k, []) + [out[k] for out in multicrop_outs]
 
@@ -575,6 +580,23 @@ class BaseMethod(pl.LightningModule):
             "train_acc5": outs["acc5"],
         }
 
+
+        # online eval cifar
+        # modify loss , acc1 ,acc5, metrics
+        if self.eval_on_cifar:
+            assert "cifar_train_dataloader" in batch.keys()
+            X_cifar, targets_cifar = batch["cifar_train_dataloader"]
+            outs_online_eval_cifar = [self._base_shared_step(x, targets_cifar) for x in X_cifar]
+            outs_online_eval_cifar = {k: [out[k] for out in outs_online_eval_cifar] for k in outs_online_eval_cifar[0].keys()}
+            outs["loss"] = sum(outs_online_eval_cifar["loss"]) / self.num_large_crops
+            outs["acc1"] = sum(outs_online_eval_cifar["acc1"]) / self.num_large_crops
+            outs["acc5"] = sum(outs_online_eval_cifar["acc5"]) / self.num_large_crops
+            metrics = {
+                "train_class_loss": outs["loss"],
+                "train_acc1_cifar": outs["acc1"],
+                "train_acc5_cifar": outs["acc5"],
+            }
+
         self.log_dict(metrics, on_epoch=True, sync_dist=True)
 
         if self.knn_eval:
@@ -588,7 +610,7 @@ class BaseMethod(pl.LightningModule):
         return outs
 
     def validation_step(
-        self, batch: List[torch.Tensor], batch_idx: int, dataloader_idx: int = None
+            self, batch: List[torch.Tensor], batch_idx: int, dataloader_idx: int = None
     ) -> Dict[str, Any]:
         """Validation step for pytorch lightning. It does all the shared operations, such as
         forwarding a batch of images, computing logits and computing metrics.
@@ -642,11 +664,11 @@ class BaseMethod(pl.LightningModule):
 
 class BaseMomentumMethod(BaseMethod):
     def __init__(
-        self,
-        base_tau_momentum: float,
-        final_tau_momentum: float,
-        momentum_classifier: bool,
-        **kwargs,
+            self,
+            base_tau_momentum: float,
+            final_tau_momentum: float,
+            momentum_classifier: bool,
+            **kwargs,
     ):
         """Base momentum model that implements all basic operations for all self-supervised methods
         that use a momentum backbone. It adds shared momentum arguments, adds basic learnable
@@ -828,13 +850,13 @@ class BaseMomentumMethod(BaseMethod):
         if self.momentum_classifier is not None:
             # momentum loss and stats
             momentum_outs["momentum_loss"] = (
-                sum(momentum_outs["momentum_loss"]) / self.num_large_crops
+                    sum(momentum_outs["momentum_loss"]) / self.num_large_crops
             )
             momentum_outs["momentum_acc1"] = (
-                sum(momentum_outs["momentum_acc1"]) / self.num_large_crops
+                    sum(momentum_outs["momentum_acc1"]) / self.num_large_crops
             )
             momentum_outs["momentum_acc5"] = (
-                sum(momentum_outs["momentum_acc5"]) / self.num_large_crops
+                    sum(momentum_outs["momentum_acc5"]) / self.num_large_crops
             )
 
             metrics = {
@@ -876,7 +898,7 @@ class BaseMomentumMethod(BaseMethod):
         self.last_step = self.trainer.global_step
 
     def validation_step(
-        self, batch: List[torch.Tensor], batch_idx: int, dataloader_idx: int = None
+            self, batch: List[torch.Tensor], batch_idx: int, dataloader_idx: int = None
     ) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         """Validation step for pytorch lightning. It performs all the shared operations for the
         momentum backbone and classifier, such as forwarding a batch of images in the momentum

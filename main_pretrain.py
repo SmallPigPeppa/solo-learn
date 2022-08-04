@@ -43,7 +43,6 @@ except ImportError:
 else:
     _umap_available = True
 
-
 from solo.utils.checkpointer import Checkpointer
 from solo.utils.classification_dataloader import prepare_data as prepare_data_classification
 from solo.utils.misc import make_contiguous
@@ -71,7 +70,7 @@ def main():
     # validation dataloader for when it is available
     if args.dataset == "custom" and (args.no_labels or args.val_data_path is None):
         val_loader = None
-    elif args.dataset in ["imagenet100", "imagenet","imagenet32"] and (args.val_data_path is None):
+    elif args.dataset in ["imagenet100", "imagenet", "imagenet32"] and (args.val_data_path is None):
         val_loader = None
     else:
         if args.data_format == "dali":
@@ -218,6 +217,17 @@ def main():
     except:
         pass
 
+    if args.eval_on_cifar:
+        cifar_train_loader, cifar_val_loader = prepare_data_classification(
+            'cifar100',
+            train_data_path=f'{args.cifar_path}',
+            val_data_path=f'{args.cifar_path}',
+            data_format='image_folder',
+            batch_size=args.batch_size,
+            num_workers=args.num_workers,
+        )
+        dali_datamodule.train_dataloader = lambda: {'train_dataloader':dali_datamodule.train_dataloader_backup(),'cifar_train_dataloader': cifar_train_loader}
+        dali_datamodule.val_dataloader = lambda: cifar_val_loader
     if args.data_format == "dali":
         trainer.fit(model, ckpt_path=ckpt_path, datamodule=dali_datamodule)
     else:
