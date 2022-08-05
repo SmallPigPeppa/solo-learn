@@ -873,9 +873,9 @@ class BaseMomentumMethod(BaseMethod):
             X_cifar, targets_cifar = batch["cifar_train_dataloader"]
             momentum_outs_online_eval_cifar = self._shared_step_momentum(X_cifar, targets_cifar)
             # outs_online_eval_cifar = {k: [out[k] for out in outs_online_eval_cifar] for k in outs_online_eval_cifar[0].keys()}
-            outs["momentum_loss"] = momentum_outs_online_eval_cifar["momentum_loss"]
-            outs["momentum_acc1"] = momentum_outs_online_eval_cifar["momentum_acc1"]
-            outs["momentum_acc5"] = momentum_outs_online_eval_cifar["momentum_acc5"]
+            outs["momentum_loss"] = momentum_outs_online_eval_cifar["loss"]
+            outs["momentum_acc1"] = momentum_outs_online_eval_cifar["acc1"]
+            outs["momentum_acc5"] = momentum_outs_online_eval_cifar["acc5"]
             metrics = {
                 "train_momentum_class_loss": outs["momentum_loss"],
                 "train_momentum_acc1_cifar": outs["momentum_acc1"],
