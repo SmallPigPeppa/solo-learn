@@ -17,6 +17,7 @@ python3 main_pretrain.py \
     --precision 16 \
     --optimizer lars \
     --grad_clip_lars \
+    --dali_device cpu\
     --eta_lars 0.02 \
     --exclude_bias_n_norm \
     --scheduler warmup_cosine \
