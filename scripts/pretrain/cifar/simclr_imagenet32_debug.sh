@@ -25,7 +25,7 @@ python3 main_pretrain.py \
     --classifier_lr 0.1 \
     --weight_decay 1e-5 \
     --batch_size 1024 \
-    --num_workers 4 \
+    --num_workers 16 \
     --crop_size 32 \
     --brightness 0.8 \
     --contrast 0.8 \
