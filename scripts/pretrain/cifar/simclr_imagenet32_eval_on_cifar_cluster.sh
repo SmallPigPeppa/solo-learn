@@ -1,7 +1,7 @@
 conda activate solo-learn
-cd /share/wenzhuoliu/code/solo-learn
+cd /mnt/mmtech01/dataset/wenzhuoliu/code/solo-learn
 DATA_PATH=/share/wenzhuoliu/torch_ds/imagenet
-CIFAR_PATH=/home/admin/torch_ds
+CIFAR_PATH=/mnt/mmtech01/dataset/wenzhuoliu/torch_ds
 DATASET=imagenet32
 #    --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
 # 0.075* sqrt(batch_size)
