@@ -14,6 +14,7 @@ python3 main_pretrain.py \
     --devices 0,1,2,3 \
     --data_format dali \
     --accelerator gpu \
+    --dali_device cpu\
     --strategy ddp \
     --sync_batchnorm \
     --precision 16 \
