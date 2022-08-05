@@ -1,6 +1,6 @@
 conda activate solo-learn
 cd /mnt/mmtech01/dataset/wenzhuoliu/code/solo-learn
-DATA_PATH=/share/wenzhuoliu/torch_ds/imagenet
+DATA_PATH=/mnt/mmtech01/dataset/lzy/ILSVRC2012
 CIFAR_PATH=/mnt/mmtech01/dataset/wenzhuoliu/torch_ds
 DATASET=imagenet32
 #    --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
