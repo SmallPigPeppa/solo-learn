@@ -47,3 +47,4 @@ python3 main_pretrain.py \
     --pred_hidden_dim 4096 \
     --base_tau_momentum 0.99 \
     --final_tau_momentum 1.0 \
+    --momentum_classifier
