@@ -9,7 +9,7 @@ python3 main_pretrain.py \
     --train_data_path /share/wenzhuoliu/torch_ds/imagenet/train  \
     --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
     --max_epochs 1000 \
-    --devices 0,1,2,3,4,5,6,7 \
+    --devices 4,5,6,7 \
     --data_format dali \
     --accelerator gpu \
     --strategy ddp \
