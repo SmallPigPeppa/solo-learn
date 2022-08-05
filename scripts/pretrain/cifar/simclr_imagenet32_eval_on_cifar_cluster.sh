@@ -7,7 +7,7 @@ DATASET=imagenet32
 # 0.075* sqrt(batch_size)
 #    --weight_decay 1e-5 \ resnet18
 #    --weight_decay 1e-6 \ resnet50
-/root/miniconda3/envs/bin/solo-learn/python3 main_pretrain.py \
+/root/miniconda3/envs/solo-learn/bin/python main_pretrain.py \
     --dataset ${DATASET} \
     --backbone resnet50 \
     --train_data_path ${DATA_PATH}/train  \
