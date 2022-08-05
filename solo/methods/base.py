@@ -834,10 +834,12 @@ class BaseMomentumMethod(BaseMethod):
             Dict[str, Any]: a dict with the features of the momentum backbone and the classification
                 loss and logits of the momentum classifier.
         """
-
         outs = super().training_step(batch, batch_idx)
-
-        _, X, targets = batch
+        if self.eval_on_cifar:
+            _, X, targets = batch['train_dataloader']
+        else:
+            _, X, targets = batch
+        # _, X, targets = batch
         X = [X] if isinstance(X, torch.Tensor) else X
 
         # remove small crops
@@ -865,6 +867,22 @@ class BaseMomentumMethod(BaseMethod):
                 "train_momentum_acc1": momentum_outs["momentum_acc1"],
                 "train_momentum_acc5": momentum_outs["momentum_acc5"],
             }
+
+        if self.eval_on_cifar:
+            assert "cifar_train_dataloader" in batch.keys()
+            X_cifar, targets_cifar = batch["cifar_train_dataloader"]
+            momentum_outs_online_eval_cifar = self._shared_step_momentum(X_cifar, targets_cifar)
+            # outs_online_eval_cifar = {k: [out[k] for out in outs_online_eval_cifar] for k in outs_online_eval_cifar[0].keys()}
+            outs["momentum_loss"] = momentum_outs_online_eval_cifar["momentum_loss"]
+            outs["momentum_acc1"] = momentum_outs_online_eval_cifar["momentum_acc1"]
+            outs["momentum_acc5"] = momentum_outs_online_eval_cifar["momentum_acc5"]
+            metrics = {
+                "train_momentum_class_loss": outs["momentum_loss"],
+                "train_momentum_acc1_cifar": outs["momentum_acc1"],
+                "train_momentum_acc5_cifar": outs["momentum_acc5"],
+            }
+
+
             self.log_dict(metrics, on_epoch=True, sync_dist=True)
 
             # adds the momentum classifier loss together with the general loss
