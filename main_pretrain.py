@@ -235,7 +235,7 @@ def main():
             train_data_path=f'{args.cifar_path}',
             val_data_path=f'{args.cifar_path}',
             data_format='image_folder',
-            batch_size=256,
+            batch_size=128,
             num_workers=args.num_workers,
         )
         # batch_size = args.batch_size,
