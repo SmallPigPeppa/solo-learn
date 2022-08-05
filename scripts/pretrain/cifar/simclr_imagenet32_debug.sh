@@ -3,6 +3,7 @@ cd /share/wenzhuoliu/code/solo-learn
 DATASET=imagenet32
 #    --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
 # 0.075* sqrt(batch_size)
+#    --accelerator gpu \
 python3 main_pretrain.py \
     --dataset ${DATASET} \
     --backbone resnet50 \
@@ -11,7 +12,6 @@ python3 main_pretrain.py \
     --max_epochs 1000 \
     --devices 0,1,2,3 \
     --data_format dali \
-    --accelerator gpu \
     --strategy ddp \
     --sync_batchnorm \
     --precision 16 \
@@ -24,7 +24,7 @@ python3 main_pretrain.py \
     --lr 2.4 \
     --classifier_lr 0.1 \
     --weight_decay 1e-5 \
-    --batch_size 1024 \
+    --batch_size 512 \
     --num_workers 16 \
     --crop_size 32 \
     --brightness 0.8 \
