@@ -1,5 +1,5 @@
 cd /mnt/mmtech01/usr/liuwenzhuo/code/solo-learn
-git pull origin
+#git pull origin
 DATA_PATH=/mnt/mmtech01/dataset/lzy/ILSVRC2012
 CIFAR_PATH=/mnt/mmtech01/dataset/wenzhuoliu/torch_ds
 DATASET=imagenet32
