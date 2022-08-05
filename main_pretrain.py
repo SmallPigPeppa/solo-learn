@@ -217,6 +217,7 @@ def main():
     except:
         pass
 
+    model.eval_on_cifar = False
     if args.eval_on_cifar:
         import torch.nn as nn
         # model.classifier=nn.Linear(model.features_dim, 100)
