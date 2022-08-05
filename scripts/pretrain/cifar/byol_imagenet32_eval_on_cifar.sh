@@ -22,10 +22,10 @@ python3 main_pretrain.py \
     --eta_lars 0.02 \
     --exclude_bias_n_norm \
     --scheduler warmup_cosine \
-    --lr 1.0 \
+    --lr 2.0 \
     --classifier_lr 0.1 \
     --weight_decay 1e-6 \
-    --batch_size 256 \
+    --batch_size 512 \
     --num_workers 4 \
     --brightness 0.4 \
     --contrast 0.4 \
