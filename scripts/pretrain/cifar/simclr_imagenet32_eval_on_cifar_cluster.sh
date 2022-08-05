@@ -1,4 +1,4 @@
-conda activate solo-learn
+source activate solo-learn
 cd /mnt/mmtech01/dataset/liuwenzhuo/code/solo-learn
 git pull origin
 DATA_PATH=/mnt/mmtech01/dataset/lzy/ILSVRC2012
