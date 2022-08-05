@@ -27,10 +27,10 @@ DATASET=imagenet32
     --eta_lars 0.02 \
     --exclude_bias_n_norm \
     --scheduler warmup_cosine \
-    --lr 3.39 \
+    --lr 2.4 \
     --classifier_lr 0.1 \
     --weight_decay 1e-6 \
-    --batch_size 2048 \
+    --batch_size 1024 \
     --num_workers 16 \
     --crop_size 32 \
     --brightness 0.8 \
