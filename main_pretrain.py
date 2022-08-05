@@ -235,10 +235,10 @@ def main():
             train_data_path=f'{args.cifar_path}',
             val_data_path=f'{args.cifar_path}',
             data_format='image_folder',
-            batch_size=128,
+            batch_size = args.batch_size,
             num_workers=args.num_workers,
         )
-        # batch_size = args.batch_size,
+
         dali_datamodule.train_dataloader = lambda: {'train_dataloader':dali_datamodule.train_dataloader_backup(),'cifar_train_dataloader': cifar_train_loader}
         dali_datamodule.val_dataloader = lambda: cifar_val_loader
     if args.data_format == "dali":
