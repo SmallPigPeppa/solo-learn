@@ -50,3 +50,4 @@ DATASET=imagenet32
     --temperature 0.2 \
     --proj_hidden_dim 2048 \
     --proj_output_dim 256
+
