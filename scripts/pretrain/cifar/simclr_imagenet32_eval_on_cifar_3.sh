@@ -7,12 +7,12 @@ DATASET=imagenet32
 # 0.075* sqrt(batch_size)
 #    --weight_decay 1e-5 \ resnet18
 #    --weight_decay 1e-6 \ resnet50
+#    --eval_on_cifar \
 python3 main_pretrain.py \
     --dataset ${DATASET} \
     --backbone resnet50 \
     --train_data_path ${DATA_PATH}/train  \
     --val_data_path ${DATA_PATH}/val  \
-    --eval_on_cifar \
     --cifar_path ${CIFAR_PATH} \
     --max_epochs 1000 \
     --devices 0,1,2,3 \
