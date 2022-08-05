@@ -221,6 +221,14 @@ def main():
         import torch.nn as nn
         # model.classifier=nn.Linear(model.features_dim, 100)
         model.eval_on_cifar=True
+        # cifar_train_loader, cifar_val_loader = prepare_data_classification(
+        #     'cifar100',
+        #     train_data_path=f'{args.cifar_path}',
+        #     val_data_path=f'{args.cifar_path}',
+        #     data_format='image_folder',
+        #     batch_size=args.batch_size,
+        #     num_workers=args.num_workers,
+        # )
         cifar_train_loader, cifar_val_loader = prepare_data_classification(
             'cifar100',
             train_data_path=f'{args.cifar_path}',
