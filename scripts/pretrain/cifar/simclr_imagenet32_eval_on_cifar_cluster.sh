@@ -1,7 +1,8 @@
 cd /mnt/mmtech01/usr/liuwenzhuo/code/solo-learn
 #git pull origin
 DATA_PATH=/mnt/mmtech01/dataset/lzy/ILSVRC2012
-CIFAR_PATH=/mnt/mmtech01/dataset/wenzhuoliu/torch_ds
+#CIFAR_PATH=/mnt/mmtech01/dataset/wenzhuoliu/torch_ds
+CIFAR_PATH=/mnt/mmtech01/usr/liuwenzhuo/torch_ds
 DATASET=imagenet32
 #    --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
 # 0.075* sqrt(batch_size)
