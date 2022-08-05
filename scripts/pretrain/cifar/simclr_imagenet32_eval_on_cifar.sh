@@ -12,8 +12,7 @@ python3 main_pretrain.py \
     --backbone resnet50 \
     --train_data_path ${DATA_PATH}/train  \
     --val_data_path ${DATA_PATH}/val  \
-    --eval_on_cifar \
-    --cifar_path ${CIFAR_PATH}
+    --cifar_path ${CIFAR_PATH} \
     --max_epochs 1000 \
     --devices 0,1,2,3,4,5,6,7 \
     --data_format dali \
@@ -26,11 +25,11 @@ python3 main_pretrain.py \
     --eta_lars 0.02 \
     --exclude_bias_n_norm \
     --scheduler warmup_cosine \
-    --lr 3.39 \
+    --lr 0.5 \
     --classifier_lr 0.1 \
     --weight_decay 1e-6 \
-    --batch_size 2048 \
-    --num_workers 16 \
+    --batch_size 512 \
+    --num_workers 4 \
     --crop_size 32 \
     --brightness 0.8 \
     --contrast 0.8 \

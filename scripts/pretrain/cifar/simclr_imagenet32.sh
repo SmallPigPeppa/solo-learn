@@ -3,13 +3,14 @@ cd /share/wenzhuoliu/code/solo-learn
 DATASET=imagenet32
 #    --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
 # 0.075* sqrt(batch_size)
+#    --dali_device cpu\
 python3 main_pretrain.py \
     --dataset ${DATASET} \
     --backbone resnet50 \
     --train_data_path /share/wenzhuoliu/torch_ds/imagenet/train  \
     --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
     --max_epochs 1000 \
-    --devices 4,5,6,7 \
+    --devices 0,1,2,3,4,5,6,7 \
     --data_format dali \
     --accelerator gpu \
     --strategy ddp \
@@ -20,10 +21,10 @@ python3 main_pretrain.py \
     --eta_lars 0.02 \
     --exclude_bias_n_norm \
     --scheduler warmup_cosine \
-    --lr 2.4 \
+    --lr 0.5 \
     --classifier_lr 0.1 \
     --weight_decay 1e-5 \
-    --batch_size 1024 \
+    --batch_size 512 \
     --num_workers 4 \
     --crop_size 32 \
     --brightness 0.8 \
