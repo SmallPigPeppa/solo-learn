@@ -4,6 +4,7 @@ DATASET=imagenet32
 #    --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
 # 0.075* sqrt(batch_size)
 #    --accelerator gpu \
+#    --dali_device cpu\
 python3 main_pretrain.py \
     --dataset ${DATASET} \
     --backbone resnet50 \
@@ -12,12 +13,12 @@ python3 main_pretrain.py \
     --max_epochs 1000 \
     --devices 0,1,2,3 \
     --data_format dali \
+    --accelerator gpu \
     --strategy ddp \
     --sync_batchnorm \
     --precision 16 \
     --optimizer lars \
     --grad_clip_lars \
-    --dali_device cpu\
     --eta_lars 0.02 \
     --exclude_bias_n_norm \
     --scheduler warmup_cosine \
@@ -25,7 +26,7 @@ python3 main_pretrain.py \
     --classifier_lr 0.1 \
     --weight_decay 1e-5 \
     --batch_size 512 \
-    --num_workers 4 \
+    --num_workers 16 \
     --crop_size 32 \
     --brightness 0.8 \
     --contrast 0.8 \
