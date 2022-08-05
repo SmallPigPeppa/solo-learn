@@ -21,11 +21,11 @@ python3 main_pretrain.py \
     --eta_lars 0.02 \
     --exclude_bias_n_norm \
     --scheduler warmup_cosine \
-    --lr 2.4 \
+    --lr 0.5 \
     --classifier_lr 0.1 \
     --weight_decay 1e-5 \
     --batch_size 512 \
-    --num_workers 16 \
+    --num_workers 4 \
     --crop_size 32 \
     --brightness 0.8 \
     --contrast 0.8 \
