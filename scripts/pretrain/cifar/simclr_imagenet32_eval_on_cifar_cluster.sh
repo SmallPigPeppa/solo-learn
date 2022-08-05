@@ -1,4 +1,3 @@
-source activate solo-learn
 cd /mnt/mmtech01/usr/liuwenzhuo/code/solo-learn
 git pull origin
 DATA_PATH=/mnt/mmtech01/dataset/lzy/ILSVRC2012
@@ -8,7 +7,7 @@ DATASET=imagenet32
 # 0.075* sqrt(batch_size)
 #    --weight_decay 1e-5 \ resnet18
 #    --weight_decay 1e-6 \ resnet50
-python3 main_pretrain.py \
+/root/miniconda3/envs/bin/solo-learn/python3 main_pretrain.py \
     --dataset ${DATASET} \
     --backbone resnet50 \
     --train_data_path ${DATA_PATH}/train  \
