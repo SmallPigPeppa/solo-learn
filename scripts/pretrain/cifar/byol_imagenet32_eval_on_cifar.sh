@@ -22,7 +22,8 @@ python3 main_pretrain.py \
     --eta_lars 0.02 \
     --exclude_bias_n_norm \
     --scheduler warmup_cosine \
-    --lr 2.0 \
+    --lr 0.45 \
+    --accumulate_grad_batches 16 \
     --classifier_lr 0.1 \
     --weight_decay 1e-6 \
     --batch_size 512 \
