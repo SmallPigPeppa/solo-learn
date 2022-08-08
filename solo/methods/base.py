@@ -868,7 +868,7 @@ class BaseMomentumMethod(BaseMethod):
                 "train_momentum_acc5": momentum_outs["momentum_acc5"],
             }
 
-        if self.eval_on_cifar:
+        if self.momentum_classifier is not None and self.eval_on_cifar:
             assert "cifar_train_dataloader" in batch.keys()
             X_cifar, targets_cifar = batch["cifar_train_dataloader"]
             momentum_outs_online_eval_cifar = self._shared_step_momentum(X_cifar, targets_cifar)
