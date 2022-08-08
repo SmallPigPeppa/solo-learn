@@ -1,7 +1,5 @@
 cd /mnt/mmtech01/usr/liuwenzhuo/code/solo-learn
-#git pull origin
 DATA_PATH=/mnt/mmtech01/dataset/lzy/ILSVRC2012
-#CIFAR_PATH=/mnt/mmtech01/dataset/wenzhuoliu/torch_ds
 CIFAR_PATH=/mnt/mmtech01/usr/liuwenzhuo/torch_ds
 DATASET=imagenet32
 #    --val_data_path /share/wenzhuoliu/torch_ds/imagenet/val  \
@@ -24,31 +22,32 @@ DATASET=imagenet32
     --sync_batchnorm \
     --precision 16 \
     --optimizer lars \
-    --grad_clip_lars \
     --eta_lars 0.02 \
     --exclude_bias_n_norm \
     --scheduler warmup_cosine \
     --lr 0.3 \
-    --classifier_lr 0.1 \
+    --classifier_lr 0.3 \
     --weight_decay 1e-6 \
     --batch_size 512 \
     --num_workers 4 \
-    --crop_size 32 \
-    --brightness 0.8 \
-    --contrast 0.8 \
-    --saturation 0.8 \
-    --hue 0.2 \
-    --gaussian_prob 0.0 0.0 \
+    --brightness 0.4 \
+    --contrast 0.4 \
+    --saturation 0.4 \
+    --hue 0.1 \
+    --gaussian_prob 1.0 0.1 \
+    --solarization_prob 0.0 0.2 \
+    --min_scale 0.2 \
     --crop_size 32 \
     --num_crops_per_aug 1 1 \
-    --name simclr-${DATASET} \
+    --name mocov3-$1 \
+    --name mocov3-${DATASET} \
     --project solo-learn \
     --entity pigpeppa \
-    --wandb \
     --save_checkpoint \
     --auto_resume \
-    --method simclr \
+    --method mocov3 \
+    --proj_hidden_dim 4096 \
+    --pred_hidden_dim 4096 \
     --temperature 0.2 \
-    --proj_hidden_dim 2048 \
-    --proj_output_dim 256
-
+    --base_tau_momentum 0.99 \
+    --final_tau_momentum 1.0
