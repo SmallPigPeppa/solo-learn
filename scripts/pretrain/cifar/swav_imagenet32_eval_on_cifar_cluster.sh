@@ -28,7 +28,7 @@ DATASET=imagenet32
     --min_lr 0.0006 \
     --classifier_lr 0.1 \
     --weight_decay 1e-6 \
-    --batch_size 512 \
+    --batch_size 128 \
     --num_workers 4 \
     --crop_size 32 \
     --brightness 0.8 \
