@@ -12,7 +12,6 @@ DATASET=imagenet32
     --backbone resnet50 \
     --train_data_path ${DATA_PATH}/train  \
     --val_data_path ${DATA_PATH}/val  \
-    --eval_on_cifar \
     --cifar_path ${CIFAR_PATH} \
     --max_epochs 1000 \
     --devices 0,1,2,3,4,5,6,7 \
