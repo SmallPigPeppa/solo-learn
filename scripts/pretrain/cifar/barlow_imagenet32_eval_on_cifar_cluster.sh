@@ -29,7 +29,7 @@ DATASET=imagenet32
     --scheduler warmup_cosine \
     --lr 0.3 \
     --weight_decay 1e-6 \
-    --batch_size 512 \
+    --batch_size 256 \
     --brightness 0.4 \
     --contrast 0.4 \
     --saturation 0.2 \
