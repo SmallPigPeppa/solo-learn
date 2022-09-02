@@ -42,4 +42,5 @@ DATASET=imagenet32
     --method simsiam \
     --proj_hidden_dim 2048 \
     --pred_hidden_dim 512 \
-    --proj_output_dim 2048
+    --proj_output_dim 2048 \
+    --resume_from_checkpoint /mnt/mmtech01/usr/liuwenzhuo/code/solo-learn/trained_models/simsiam/22bn8hmt/simsiam-imagenet32-22bn8hmt-ep=999.ckpt
