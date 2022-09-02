@@ -19,7 +19,7 @@ DATASET=imagenet32
     --precision 16 \
     --optimizer sgd \
     --scheduler warmup_cosine \
-    --lr 0. \
+    --lr 0.5 \
     --classifier_lr 0.1 \
     --weight_decay 1e-6 \
     --batch_size 256 \
