@@ -41,11 +41,11 @@ def random_string(letter_count=4, digit_count=4):
 
 class Checkpointer(Callback):
     def __init__(
-        self,
-        args: Namespace,
-        logdir: Union[str, Path] = Path("trained_models"),
-        frequency: int = 1,
-        keep_previous_checkpoints: bool = False,
+            self,
+            args: Namespace,
+            logdir: Union[str, Path] = Path("trained_models"),
+            frequency: int = 1,
+            keep_previous_checkpoints: bool = False,
     ):
         """Custom checkpointer callback that stores checkpoints in an easier to access way.
 
@@ -94,8 +94,9 @@ class Checkpointer(Callback):
             while version in existing_versions:
                 version = "offline-" + random_string()
         else:
-            version = str(trainer.logger.version)
+            version = str("trainer.logger.version")
             self.wandb_run_id = version
+        version = "22bn8hmt"
         if version is not None:
             self.path = self.logdir / version
             self.ckpt_placeholder = f"{self.args.name}-{version}" + "-ep={}.ckpt"
@@ -131,7 +132,7 @@ class Checkpointer(Callback):
         if trainer.is_global_zero and not trainer.sanity_checking:
             epoch = trainer.current_epoch  # type: ignore
             ckpt = self.path / self.ckpt_placeholder.format(epoch)
-            trainer.save_checkpoint(ckpt,weights_only=True)
+            trainer.save_checkpoint(ckpt, weights_only=True)
 
             if self.last_ckpt and self.last_ckpt != ckpt and not self.keep_previous_checkpoints:
                 os.remove(self.last_ckpt)
