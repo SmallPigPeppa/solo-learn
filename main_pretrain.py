@@ -246,6 +246,9 @@ def main():
     else:
         trainer.fit(model, train_loader, val_loader, ckpt_path=ckpt_path)
 
+    ckpt_path="/mnt/mmtech01/usr/liuwenzhuo/code/solo-learn/trained_models/simsiam/22bn8hmt/simsiam-imagenet32-22bn8hmt-ep=1000.ckpt"
+    trainer.save_checkpoint(ckpt_path, weights_only=True)
+
 
 
 if __name__ == "__main__":
