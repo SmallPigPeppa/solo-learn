@@ -33,6 +33,7 @@ DATA_PATH=/mnt/mmtech01/dataset/lzy/ILSVRC2012
     --project solo-learn \
     --entity pigpeppa \
     --wandb \
+    --offline \
     --save_checkpoint \
     --auto_resume \
     --method byol \
@@ -41,4 +42,3 @@ DATA_PATH=/mnt/mmtech01/dataset/lzy/ILSVRC2012
     --pred_hidden_dim 4096 \
     --base_tau_momentum 0.99 \
     --final_tau_momentum 1.0 \
-    --momentum_classifier
