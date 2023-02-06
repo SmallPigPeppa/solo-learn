@@ -849,6 +849,8 @@ class PretrainDALIDataModule(pl.LightningDataModule):
             transform_pipeline = ImagenetTransform
         elif dataset in ['imagenet32']:
             transform_pipeline = CustomTransform
+        elif dataset in ['multi-scale-imagenet']:
+            transform_pipeline = MultiCustomTransform
         elif dataset == "custom":
             transform_pipeline = CustomTransform
         else:
