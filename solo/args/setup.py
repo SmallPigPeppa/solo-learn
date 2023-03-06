@@ -61,7 +61,7 @@ def parse_args_pretrain() -> argparse.Namespace:
 
     # add shared arguments
     dataset_args(parser)
-    augmentations_args(parser)
+    augmentatioxns_args(parser)
     custom_dataset_args(parser)
 
     # add pytorch lightning trainer args
