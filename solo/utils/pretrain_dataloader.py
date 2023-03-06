@@ -532,7 +532,7 @@ def prepare_datasets(
         DatasetClass = vars(torchvision.datasets)[dataset.upper()]
         train_dataset = dataset_with_index(DatasetClass)(
             train_data_path,
-            train=True,
+            train=False,
             download=download,
             transform=transform,
         )
