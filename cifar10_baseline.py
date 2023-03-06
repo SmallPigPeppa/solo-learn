@@ -14,7 +14,7 @@ from torchmetrics.functional import accuracy
 from pytorch_lightning.callbacks import ModelCheckpoint
 seed_everything(7)
 
-PATH_DATASETS = os.environ.get("PATH_DATASETS", ".")
+PATH_DATASETS = '/mnt/mmtech01/usr/liuwenzhuo/torch_ds'
 BATCH_SIZE = 256 if torch.cuda.is_available() else 64
 NUM_WORKERS = int(os.cpu_count() / 2)
 
