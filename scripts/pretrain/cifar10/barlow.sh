@@ -28,6 +28,7 @@ python3 main_pretrain.py \
     --project solo-learn-cifar10 \
     --entity pigpeppa \
     --wandb \
+    --offline \
     --save_checkpoint \
     --auto_resume \
     --method barlow_twins \
