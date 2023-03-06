@@ -1,5 +1,5 @@
 python3 main_pretrain.py \
-    --dataset cifar10 \
+    --dataset cifar100 \
     --backbone resnet18 \
     --train_data_path ./data \
     --val_data_path ./data \
