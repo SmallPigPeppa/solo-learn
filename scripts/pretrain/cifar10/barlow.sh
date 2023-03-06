@@ -1,8 +1,8 @@
 python3 main_pretrain.py \
     --dataset cifar100 \
     --backbone resnet18 \
-    --train_data_path ./data \
-    --val_data_path ./data \
+    --train_data_path /mnt/mmtech01/usr/liuwenzhuo/torch_ds \
+    --val_data_path /mnt/mmtech01/usr/liuwenzhuo/torch_ds \
     --max_epochs 100 \
     --devices 0,1 \
     --accelerator gpu \
