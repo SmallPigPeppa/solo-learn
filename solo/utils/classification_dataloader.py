@@ -329,7 +329,7 @@ def prepare_data(
         train_data_path=train_data_path,
         val_data_path=val_data_path,
         data_format=data_format,
-        download=download,
+        download=False,
         data_fraction=data_fraction,
     )
     train_loader, val_loader = prepare_dataloaders(
