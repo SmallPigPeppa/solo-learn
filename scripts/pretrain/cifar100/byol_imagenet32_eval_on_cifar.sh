@@ -1,7 +1,7 @@
 conda activate solo-learn
 cd /share/wenzhuoliu/code/solo-learn
 DATA_PATH=/share/wenzhuoliu/torch_ds/imagenet
-CIFAR_PATH=/home/admin/torch_ds_test
+CIFAR_PATH=/home/admin/torch_ds
 DATASET=imagenet32
 python3 main_pretrain.py \
     --dataset ${DATASET} \
@@ -11,7 +11,7 @@ python3 main_pretrain.py \
     --eval_on_cifar \
     --cifar_path ${CIFAR_PATH} \
     --max_epochs 1000 \
-    --devices 0,1 \
+    --devices 0,1,2,3,4,5,6,7 \
     --accelerator gpu \
     --data_format dali \
     --strategy ddp \
