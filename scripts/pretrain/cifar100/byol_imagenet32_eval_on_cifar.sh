@@ -1,7 +1,7 @@
 conda activate solo-learn
 cd /share/wenzhuoliu/code/solo-learn
 DATA_PATH=/share/wenzhuoliu/torch_ds/imagenet
-CIFAR_PATH=/home/admin/torch_ds
+CIFAR_PATH=/home/admin/torch_ds_test
 DATASET=imagenet32
 python3 main_pretrain.py \
     --dataset ${DATASET} \
