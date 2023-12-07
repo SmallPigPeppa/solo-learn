@@ -193,11 +193,22 @@ def main():
         lr_monitor = LearningRateMonitor(logging_interval="step")
         callbacks.append(lr_monitor)
 
+    # trainer = Trainer.from_argparse_args(
+    #     args,
+    #     logger=wandb_logger if args.wandb else None,
+    #     callbacks=callbacks,
+    #     enable_checkpointing=False,
+    #     gradient_clip_val=1.0,
+    #     strategy=DDPStrategy(find_unused_parameters=False)
+    #     if args.strategy == "ddp"
+    #     else args.strategy,
+    # )
     trainer = Trainer.from_argparse_args(
         args,
         logger=wandb_logger if args.wandb else None,
         callbacks=callbacks,
         enable_checkpointing=False,
+        gradient_clip_val=1.0,
         strategy=DDPStrategy(find_unused_parameters=False)
         if args.strategy == "ddp"
         else args.strategy,
