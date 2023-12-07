@@ -25,7 +25,7 @@ DATASET=imagenet32
     --accumulate_grad_batches 16 \
     --classifier_lr 0.1 \
     --weight_decay 1e-5 \
-    --batch_size 256 \
+    --batch_size 1024 \
     --num_workers 4 \
     --brightness 0.4 \
     --contrast 0.4 \
