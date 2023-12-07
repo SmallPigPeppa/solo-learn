@@ -4,7 +4,7 @@ CIFAR_PATH=/mnt/mmtech01/usr/liuwenzhuo/torch_ds
 DATASET=imagenet32
 /root/miniconda3/envs/solo-learn/bin/python main_pretrain.py \
     --dataset ${DATASET} \
-    --backbone resnet18 \
+    --backbone resnet50 \
     --train_data_path ${DATA_PATH}/train  \
     --val_data_path ${DATA_PATH}/val  \
     --eval_on_cifar \
@@ -24,7 +24,7 @@ DATASET=imagenet32
     --lr 0.45 \
     --accumulate_grad_batches 16 \
     --classifier_lr 0.1 \
-    --weight_decay 1e-5 \
+    --weight_decay 1e-6 \
     --batch_size 512 \
     --num_workers 4 \
     --brightness 0.4 \
