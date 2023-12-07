@@ -202,6 +202,15 @@ def main():
         if args.strategy == "ddp"
         else args.strategy,
     )
+    # trainer = Trainer.from_argparse_args(
+    #     args,
+    #     logger=wandb_logger if args.wandb else None,
+    #     callbacks=callbacks,
+    #     enable_checkpointing=False,
+    #     strategy=DDPStrategy(find_unused_parameters=True)
+    #     if args.strategy == "ddp"
+    #     else args.strategy,
+    # )
 
     # fix for incompatibility with nvidia-dali and pytorch lightning
     # with dali 1.15 (this will be fixed on 1.16)
