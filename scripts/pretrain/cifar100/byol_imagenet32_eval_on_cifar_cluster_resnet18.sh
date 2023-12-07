@@ -4,7 +4,7 @@ CIFAR_PATH=/mnt/mmtech01/usr/liuwenzhuo/torch_ds
 DATASET=imagenet32
 /root/miniconda3/envs/solo-learn/bin/python main_pretrain.py \
     --dataset ${DATASET} \
-    --backbone resnet18 \
+    --backbone resnet50 \
     --train_data_path ${DATA_PATH}/train  \
     --val_data_path ${DATA_PATH}/val  \
     --eval_on_cifar \
