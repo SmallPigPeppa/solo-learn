@@ -35,7 +35,7 @@ DATASET=imagenet32
     --solarization_prob 0.0 0.2 \
     --crop_size 32 \
     --num_crops_per_aug 1 1 \
-    --name byol-${DATASET} \
+    --name byol-resnet18-${DATASET} \
     --project solo-learn \
     --entity pigpeppa \
     --wandb \
