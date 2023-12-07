@@ -1,4 +1,4 @@
-cd /mnt/mmtech01/usr/liuwenzhuo/code/solo-learn
+#cd /mnt/mmtech01/usr/liuwenzhuo/code/solo-learn
 DATA_PATH=/mnt/mmtech01/dataset/lzy/ILSVRC2012
 CIFAR_PATH=/mnt/mmtech01/usr/liuwenzhuo/torch_ds
 DATASET=imagenet32
