@@ -21,7 +21,7 @@ DATASET=imagenet32
     --eta_lars 0.02 \
     --exclude_bias_n_norm \
     --scheduler warmup_cosine \
-    --lr 0.45 \
+    --lr 2.0 \
     --accumulate_grad_batches 16 \
     --classifier_lr 0.1 \
     --weight_decay 1e-5 \

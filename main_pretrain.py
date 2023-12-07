@@ -208,7 +208,7 @@ def main():
         logger=wandb_logger if args.wandb else None,
         callbacks=callbacks,
         enable_checkpointing=False,
-        gradient_clip_val=0.5,
+        # gradient_clip_val=0.5,
         strategy=DDPStrategy(find_unused_parameters=True)
         if args.strategy == "ddp"
         else args.strategy,
