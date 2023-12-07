@@ -2,13 +2,13 @@
 DATA_PATH=/mnt/mmtech01/dataset/lzy/ILSVRC2012
 CIFAR_PATH=/mnt/mmtech01/usr/liuwenzhuo/torch_ds
 DATASET=imagenet32
+#    --eval_on_cifar \
+#    --cifar_path ${CIFAR_PATH} \
 /root/miniconda3/envs/solo-learn/bin/python main_pretrain.py \
     --dataset ${DATASET} \
     --backbone resnet18 \
     --train_data_path ${DATA_PATH}/train  \
     --val_data_path ${DATA_PATH}/val  \
-    --eval_on_cifar \
-    --cifar_path ${CIFAR_PATH} \
     --max_epochs 1000 \
     --devices 0,1,2,3,4,5,6,7 \
     --accelerator gpu \
